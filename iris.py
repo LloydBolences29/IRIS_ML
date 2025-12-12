@@ -3,6 +3,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+#imports for training the model
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
 #settings for the pandas
 # This removes the limit on the number of displayed columns
 pd.set_option('display.max_columns', None)
@@ -13,6 +19,8 @@ pd.set_option('display.max_colwidth', None)
 # Load the iris dataset from seaborn
 data = pd.read_csv("iris.csv")
 
+
+#Exploratory Data Analysis (EDA)
 #Looking at the first 10 rows of the dataset
 print(data.head(10))
 
@@ -51,4 +59,13 @@ plt.title("Class Distribution")
 plt.show()
 
 
+#Preprocessing the data
+#Handling Outliers
+plt.figure(figsize=(10, 6))
+# This creates a boxplot for all numeric columns
+sns.boxplot(data=data.select_dtypes(include=['number']))
+plt.title("Outlier Detection with Boxplots")
+plt.show()
+
 #Training of Naive Bayes and Decision Tree Classifier
+
